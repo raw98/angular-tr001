@@ -8,26 +8,34 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductAlertComponent } from './product-alert/product-alert.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import { ViewComponent } from './view/view.component';
+import {Routes} from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './auth.service';
+const routes : Routes = [
+  {path:'appareil',component:ViewComponent},
+  {path:'auth',component:AuthComponent},
+  {path:'',component:ViewComponent}
+];
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-      { path: 'products/:productId', component: ProductDetailsComponent },
-    ])
-  ],
+    RouterModule.forRoot(routes)
+    ],
   declarations: [
     AppComponent,
     TopBarComponent,
     ProductListComponent,
     ProductAlertComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ViewComponent,
+    AuthComponent
   ],
   bootstrap: [
     AppComponent
-  ]
+  ],
+  providers: [AuthService]
 })
 export class AppModule { }
 
